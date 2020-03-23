@@ -7,6 +7,8 @@ import webbrowser
 
 from PySide2 import QtWidgets, QtGui, QtPrintSupport
 
+import syntax
+
 
 class PyNotepad(QtWidgets.QMainWindow):
     windows = []
@@ -139,6 +141,10 @@ class PyNotepad(QtWidgets.QMainWindow):
         self.font_action = QtWidgets.QAction('Font', self)
         self.font_action.triggered.connect(self._font)
         self.format_menu.addAction(self.font_action)
+
+        self.highlight_syntax_action = QtWidgets.QAction('Python Syntax Highlighter', self, checkable=True)
+        self.highlight_syntax_action.triggered.connect(self.highlight_syntax)
+        self.format_menu.addAction(self.highlight_syntax_action)
 
         self.menubar.addMenu(self.format_menu)
 
@@ -292,6 +298,12 @@ class PyNotepad(QtWidgets.QMainWindow):
         if ok:
             self.text_edit_widget.setFont(font)
 
+    def highlight_syntax(self, checked):
+        if checked:
+            self.highlighter = syntax.PythonHighlighter(self.text_edit_widget.document())
+        else:
+            self.highlighter.setDocument(None)
+
     def about(self):
         message_box = QtWidgets.QMessageBox()
         message_box.setWindowTitle('About PyNotepad')
@@ -307,12 +319,11 @@ class PyNotepad(QtWidgets.QMainWindow):
         new_text = self.text_edit_widget.toPlainText()
         if not self.file_path:
             return not new_text
-        else:
-            old_file = open(self.file_path, encoding='utf-8')
-            old_text = old_file.read()
-            old_md5 = get_md5(old_text)
-            new_md5 = get_md5(new_text)
-            return old_md5 == new_md5
+        old_file = open(self.file_path, encoding='utf-8')
+        old_text = old_file.read()
+        old_md5 = get_md5(old_text)
+        new_md5 = get_md5(new_text)
+        return old_md5 == new_md5
 
 
 def get_md5(my_string):
