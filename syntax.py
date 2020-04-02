@@ -1,33 +1,33 @@
 from PySide2 import QtCore, QtGui
 
 
-def format(color, style=''):
+def _format(color, style=''):
     """Return a QTextCharFormat with the given attributes.
     """
     _color = QtGui.QColor()
     _color.setNamedColor(color)
 
-    _format = QtGui.QTextCharFormat()
-    _format.setForeground(_color)
+    __format = QtGui.QTextCharFormat()
+    __format.setForeground(_color)
     if 'bold' in style:
-        _format.setFontWeight(QtGui.QFont.Bold)
+        __format.setFontWeight(QtGui.QFont.Bold)
     if 'italic' in style:
-        _format.setFontItalic(True)
+        __format.setFontItalic(True)
 
-    return _format
+    return __format
 
 
 # Syntax styles that can be shared by all languages
 STYLES = {
-    'keyword': format('blue'),
-    'operator': format('red'),
-    'brace': format('darkGray'),
-    'defclass': format('black', 'bold'),
-    'string': format('magenta'),
-    'string2': format('darkMagenta'),
-    'comment': format('darkGreen', 'italic'),
-    'self': format('black', 'italic'),
-    'numbers': format('brown'),
+    'keyword': _format('blue'),
+    'operator': _format('red'),
+    'brace': _format('darkGray'),
+    'defclass': _format('black', 'bold'),
+    'string': _format('magenta'),
+    'string2': _format('darkMagenta'),
+    'comment': _format('darkGreen', 'italic'),
+    'self': _format('black', 'italic'),
+    'numbers': _format('brown'),
 }
 
 
@@ -58,9 +58,7 @@ class PythonHighlighter(QtGui.QSyntaxHighlighter):
     ]
 
     # Python braces
-    braces = [
-        '\{', '\}', '\(', '\)', '\[', '\]',
-    ]
+    braces = ['\{', '\}', '\(', '\)', '\[', '\]']
 
     def __init__(self, document):
         QtGui.QSyntaxHighlighter.__init__(self, document)
@@ -165,7 +163,4 @@ class PythonHighlighter(QtGui.QSyntaxHighlighter):
             start = delimiter.indexIn(text, start + length)
 
         # Return True if still inside a multi-line string, False otherwise
-        if self.currentBlockState() == in_state:
-            return True
-        else:
-            return False
+        return bool(self.currentBlockState() == in_state)
