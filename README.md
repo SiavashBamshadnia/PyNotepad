@@ -7,6 +7,7 @@ Notepad implementation with Python
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/SiavashBamshadnia/PyNotepad/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 [![StyleCI](https://github.styleci.io/repos/245685337/shield?branch=master)](https://github.styleci.io/repos/245685337)
 [![License: MIT](https://img.shields.io/badge/License-MIT-informational.svg)](https://github.com/SiavashBamshadnia/PyNotepad/blob/master/LICENSE)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FSiavashBamshadnia%2FPyNotepad.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FSiavashBamshadnia%2FPyNotepad?ref=badge_shield)
 
 ![](icon.png)
 
@@ -16,3 +17,6 @@ This is for tutorials.
 The icon is taken from [alienvalley.com](https://alienvalley.com) and edited by me.
 
 Written with ♥ by Siavash Bamshadnia
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FSiavashBamshadnia%2FPyNotepad.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FSiavashBamshadnia%2FPyNotepad?ref=badge_large)
